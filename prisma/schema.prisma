@@ -1,0 +1,232 @@
+// Data model untuk aplikasi inspeksi mobil bekas.
+// Mengikuti konsep di docs/prd.md §7. SQLite tidak punya enum, jadi kolom
+// bertipe String dengan nilai yang dibatasi di layer aplikasi (src/lib).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  // "user" | "admin" — admin punya akses halaman kurasi
+  role         String   @default("user")
+  // Struktur institusi disiapkan tapi belum diaktifkan saat launch (PRD §2)
+  institution   Institution? @relation(fields: [institutionId], references: [id])
+  institutionId String?
+  createdAt    DateTime @default(now())
+
+  sessions    Session[]
+  vehicles    Vehicle[]
+  inspections Inspection[]
+  payments    Payment[]
+  suggestions ItemSuggestion[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+/// Fase lanjut (PRD §10 Fase 3). Belum dipakai di alur launch.
+model Institution {
+  id                 String   @id @default(cuid())
+  name               String
+  maxKendaraan       Int      @default(0)
+  maxSeats           Int      @default(0)
+  subscriptionStatus String   @default("inactive")
+  createdAt          DateTime @default(now())
+
+  users User[]
+}
+
+model Vehicle {
+  id           String   @id @default(cuid())
+  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId      String
+  brand        String
+  model        String
+  yearRange    String
+  year         Int?
+  variant      String?
+  transmission String? // "manual" | "matic" | null
+  plateNo      String?
+  vinNo        String?
+  createdAt    DateTime @default(now())
+
+  inspections Inspection[]
+
+  @@index([ownerId])
+}
+
+/// Template checklist ter-versioning. Kunci logis: templateKey (brand+model+yearRange).
+/// payload = dokumen JSON sesuai kontrak schema (PRD §5) hasil gabungan Tier A + Tier B.
+model ChecklistTemplate {
+  id          String   @id @default(cuid())
+  templateKey String
+  brand       String
+  model       String
+  yearRange   String
+  version     Int
+  // "A" bila hanya universal, "AB" bila sudah ditempel section Tier B
+  tier        String   @default("A")
+  // "published" | "beta" | "archived"
+  status      String   @default("published")
+  payload     String
+  // Status generate Tier B: "pending" | "done" | "skipped" | "failed"
+  tierBStatus String   @default("pending")
+  tierBError  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([templateKey, version])
+  @@index([templateKey])
+}
+
+/// Jejak audit setiap perubahan template (PRD §6.2: bump version + audit trail).
+model TemplateAudit {
+  id          String   @id @default(cuid())
+  templateKey String
+  version     Int
+  action      String
+  detail      String
+  actor       String   @default("system")
+  createdAt   DateTime @default(now())
+
+  @@index([templateKey])
+}
+
+model Inspection {
+  id              String   @id @default(cuid())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  vehicleId       String
+  templateKey     String
+  templateVersion Int
+  // "draft" | "selesai"
+  status          String   @default("draft")
+  odometerKm      Int?
+  askingPrice     Int?
+  sellerNote      String?
+  shareToken      String?  @unique
+  paidAt          DateTime?
+  // Section yang sudah pernah dibuka, dipisah koma. Dipakai agar impressions
+  // (PRD §6.1) dihitung sekali per inspeksi, bukan tiap render.
+  seenSections    String   @default("")
+  startedAt       DateTime @default(now())
+  completedAt     DateTime?
+  updatedAt       DateTime @updatedAt
+
+  answers  Answer[]
+  photos   Photo[]
+  payments Payment[]
+  report   ReportSummary?
+
+  @@index([userId])
+}
+
+model Answer {
+  id           String   @id @default(cuid())
+  inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  inspectionId String
+  itemId       String
+  sectionKey   String
+  // "aman" | "perhatian" | "bahaya" | "tidak_dicek"
+  result       String
+  detail       String?
+  note         String?
+  flagIrrelevant Boolean @default(false)
+  updatedAt    DateTime @updatedAt
+
+  @@unique([inspectionId, itemId])
+  @@index([inspectionId])
+}
+
+model Photo {
+  id           String     @id @default(cuid())
+  inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  inspectionId String
+  itemId       String
+  storageKey   String
+  mimeType     String     @default("image/jpeg")
+  width        Int?
+  height       Int?
+  byteSize     Int?
+  createdAt    DateTime   @default(now())
+
+  @@index([inspectionId, itemId])
+}
+
+/// Agregasi sinyal relevansi per (templateKey, version, itemId) — PRD §6.1
+model ItemFeedback {
+  id             String   @id @default(cuid())
+  templateKey    String
+  version        Int
+  itemId         String
+  impressions    Int      @default(0)
+  flagIrrelevant Int      @default(0)
+  updatedAt      DateTime @updatedAt
+
+  @@unique([templateKey, version, itemId])
+  @@index([templateKey])
+}
+
+/// Usulan item yang belum ada (PRD §6.1 suggested_missing, §6.4 loop positif)
+model ItemSuggestion {
+  id          String   @id @default(cuid())
+  templateKey String
+  version     Int
+  text        String
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId      String?
+  // "baru" | "diterima" | "ditolak"
+  status      String   @default("baru")
+  createdAt   DateTime @default(now())
+
+  @@index([templateKey])
+}
+
+model Payment {
+  id           String     @id @default(cuid())
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  inspectionId String
+  amount       Int
+  currency     String     @default("IDR")
+  // "pending" | "paid" | "failed"
+  status       String     @default("pending")
+  provider     String     @default("mock")
+  providerRef  String?
+  createdAt    DateTime   @default(now())
+  paidAt       DateTime?
+
+  @@index([userId])
+}
+
+/// Cache hasil ringkasan+narasi agar report lama tidak berubah isi (PRD §5 reproduksi report)
+model ReportSummary {
+  id           String     @id @default(cuid())
+  inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  inspectionId String     @unique
+  verdict      String
+  scoreJson    String
+  narrative    String
+  // "llm" | "aturan"
+  engine       String     @default("aturan")
+  generatedAt  DateTime   @default(now())
+}
