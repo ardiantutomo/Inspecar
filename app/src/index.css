@@ -1,0 +1,26 @@
+:root {
+  --ink: #16191c;
+  --surface: #f6f7f6;
+  --line: #d8dcda;
+  --brand: #0e6e64;
+  --critical: #b23b32;
+  --caution: #c08420;
+  --clear: #2e7d52;
+  --muted: #4a5a56;
+  --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  --sans: Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: #eef1ef;
+  line-height: 1.5;
+}
