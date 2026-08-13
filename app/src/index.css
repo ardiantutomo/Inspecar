@@ -1,0 +1,67 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+@import 'tailwindcss';
+
+/*
+ * Design tokens — konsep "Diagnostic Report".
+ * Satu sumber kebenaran untuk seluruh app (lihat prompt-desain-ui-anti-slop.md).
+ * Warna severity HANYA dipakai untuk mengkodekan tingkat temuan, bukan dekorasi.
+ */
+@theme {
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --color-ink: #16191c;
+  --color-ink-soft: #4b5259;
+  --color-ink-faint: #8a9198;
+  --color-surface: #f6f7f6;
+  --color-card: #ffffff;
+  --color-line: #d8dcda;
+  --color-line-soft: #e8ebe9;
+
+  --color-brand: #0e6e64;
+  --color-brand-deep: #0a544c;
+  --color-brand-soft: #e2eeec;
+
+  --color-critical: #b23b32;
+  --color-critical-soft: #f6e9e8;
+  --color-caution: #c08420;
+  --color-caution-soft: #f6efdf;
+  --color-clear: #2e7d52;
+  --color-clear-soft: #e7f1ea;
+
+  --radius-card: 0.5rem;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-surface text-ink font-sans antialiased;
+  font-feature-settings: 'cv05', 'cv11';
+}
+
+/* Angka & data selalu tabular — kesan instrumen ukur */
+.num {
+  @apply font-mono;
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
