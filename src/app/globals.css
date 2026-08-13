@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* Sumber kebenaran token. Alasan tiap keputusan: docs/design-system.md */
+@theme {
+  --color-ink: #16191c;
+  --color-ink-soft: #565d63;
+  --color-surface: #f6f7f6;
+  --color-sheet: #ffffff;
+  --color-line: #d8dcda;
+  --color-line-strong: #b9c0bc;
+  --color-brand: #0e6e64;
+  --color-brand-ink: #0a534b;
+  --color-critical: #b23b32;
+  --color-caution: #c08420;
+  --color-clear: #2e7d52;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sheet: 2px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  /* Angka & kode selalu tabular: harga, KM, nomor rangka, versi template. */
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-brand) 22%, transparent);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* iOS tidak boleh zoom saat fokus ke field — dipakai sambil berdiri di dekat mobil. */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+@utility data-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility micro-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  :root {
+    --color-surface: #ffffff;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  .sheet {
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--font-mono);
+    font-size: 8pt;
+  }
+}
