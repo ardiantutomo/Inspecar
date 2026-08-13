@@ -134,7 +134,7 @@ function Group({
                 )}
               </div>
               <p className="num mt-1.5 text-xs text-ink-soft">
-                Estimasi bila diperbaiki: {item.estimasi_biaya_perbaikan}
+                Bila bermasalah: {item.estimasi_biaya_perbaikan}
               </p>
               {ans?.catatan && (
                 <p className="mt-1.5 border-l-2 border-line-soft pl-2.5 text-[13px] leading-relaxed text-ink-soft">
