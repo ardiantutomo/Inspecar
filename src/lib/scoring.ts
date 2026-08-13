@@ -88,12 +88,27 @@ export function summarizeInspection(
     verdict = "hati-hati";
   }
 
-  const answered = findings.length - unanswered.length;
-  const penalty = majorCritical.length * 18 + critical.length * 8 + caution.length * 4;
-  const score = Math.max(
-    0,
-    Math.min(100, Math.round((answered / Math.max(findings.length, 1)) * 100 - penalty)),
-  );
+  // Skor dihitung dari item yang sudah diisi (belum diisi tidak menghukum skor).
+  const answeredFindings = findings.filter((f) => f.level !== "unknown");
+  const answered = answeredFindings.length;
+  let score = 100;
+  if (answered === 0) {
+    score = 0;
+  } else {
+    const okWeight = ok.length;
+    const cautionWeight = caution.length * 0.55;
+    const criticalWeight = critical.length * 0.15;
+    const quality =
+      (okWeight + cautionWeight + criticalWeight) / answered;
+    const severityPenalty =
+      majorCritical.length * 12 +
+      critical.filter((f) => f.severity !== "major").length * 6 +
+      caution.length * 3;
+    score = Math.max(
+      0,
+      Math.min(100, Math.round(quality * 100 - severityPenalty)),
+    );
+  }
 
   const negoPoints = [...critical, ...caution]
     .filter((f) => !f.isDealBreaker)
