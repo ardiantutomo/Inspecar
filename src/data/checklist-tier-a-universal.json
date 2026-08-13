@@ -1,0 +1,392 @@
+{
+  "template_id": "universal-mobil-bekas-tier-a",
+  "brand": "*",
+  "model": "*",
+  "year_range": "*",
+  "version": 1,
+  "tier": "A",
+  "status": "published",
+  "meta": {
+    "judul": "Checklist Universal Mobil Bekas",
+    "deskripsi": "Pemeriksaan dasar yang berlaku untuk semua mobil bekas. Panduan untuk pembeli awam. Bukan pengganti pemeriksaan montir profesional.",
+    "disclaimer": "Hasil checklist ini adalah alat bantu keputusan, bukan jaminan kondisi kendaraan. Untuk keputusan akhir, pertimbangkan pemeriksaan oleh bengkel terpercaya."
+  },
+  "sections": [
+    {
+      "severity": "major",
+      "title": "Dokumen & Legalitas",
+      "deskripsi": "Cek ini WAJIB dilakukan sebelum tertarik pada kondisi fisik. Masalah dokumen bisa membuat mobil tidak bisa dipakai/dijual atau bahkan disita.",
+      "items": [
+        {
+          "id": "doc_rangka_match",
+          "label": "Nomor rangka cocok dengan BPKB & STNK",
+          "cara_cek": "Cari nomor rangka (biasanya di ruang mesin, bawah kap, atau dekat kaki kanan pengemudi). Cocokkan digit demi digit dengan yang tertera di BPKB dan STNK.",
+          "tanda_bahaya": "Nomor tidak cocok, tampak diketuk ulang, digrinda, atau dicat ulang. Ini indikasi kuat mobil bodong/curian.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_aman",
+          "deal_breaker": true,
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Deal-breaker (batalkan)",
+          "status": "active"
+        },
+        {
+          "id": "doc_mesin_match",
+          "label": "Nomor mesin cocok dengan BPKB & STNK",
+          "cara_cek": "Temukan nomor mesin pada blok mesin. Cocokkan dengan BPKB & STNK.",
+          "tanda_bahaya": "Tidak cocok atau mesin tampak sudah diganti tanpa dokumen pendukung.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_aman",
+          "deal_breaker": true,
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Deal-breaker (batalkan)",
+          "status": "active"
+        },
+        {
+          "id": "doc_bpkb_asli",
+          "label": "BPKB asli & tidak dalam status kredit/gadai",
+          "cara_cek": "Pastikan BPKB asli (bukan fotokopi/duplikat tanpa alasan jelas). Tanya apakah mobil masih kredit. Untuk aman, cek keaslian dokumen bisa di Samsat.",
+          "tanda_bahaya": "Hanya ada fotokopi, BPKB dipegang leasing (mobil masih kredit), atau penjual menghindar soal dokumen asli.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_aman",
+          "deal_breaker": true,
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Berisiko tinggi (batalkan bila tak jelas)",
+          "status": "active"
+        },
+        {
+          "id": "doc_pajak_blokir",
+          "label": "Status pajak & blokir",
+          "cara_cek": "Cek masa berlaku STNK & tanggal pajak. Cek status blokir/tunggakan lewat aplikasi/situs Samsat resmi daerah (masukkan nomor plat).",
+          "tanda_bahaya": "Pajak mati bertahun-tahun (biaya besar untuk hidupkan lagi), status diblokir, atau ada tunggakan besar.",
+          "severity": "major",
+          "input_type": "text",
+          "label_detail": "Catat masa pajak & hasil cek Samsat",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 0 - beberapa juta (tergantung tunggakan)",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "major",
+      "title": "Tanda Bekas Banjir",
+      "deskripsi": "Mobil bekas banjir sering dijual murah tanpa disebutkan. Kerusakan kelistrikan & karat bisa muncul bertahun-tahun kemudian.",
+      "items": [
+        {
+          "id": "flood_lumpur_tersembunyi",
+          "label": "Lumpur/karat di area tersembunyi",
+          "cara_cek": "Angkat karpet dasar & jok bila bisa. Periksa kolong jok, celah bagasi, dan area ban serep. Cari sisa lumpur halus, garis air, atau karat tidak wajar.",
+          "tanda_bahaya": "Endapan lumpur di celah tersembunyi, garis batas air, karat di lantai/kolong jok.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Sangat mahal / tak terprediksi",
+          "status": "active"
+        },
+        {
+          "id": "flood_bau_jamur",
+          "label": "Bau apek/lembab & jamur",
+          "cara_cek": "Masuk ke kabin dalam keadaan tertutup beberapa menit. Cium bau apek/lembab. Periksa jamur di jok, plafon, seatbelt, dan sudut kabin.",
+          "tanda_bahaya": "Bau lembab menyengat, jamur, atau bau pengharum berlebihan yang menutupi sesuatu.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_bahaya",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Indikator; cek lebih lanjut",
+          "status": "active"
+        },
+        {
+          "id": "flood_kabel_korosi",
+          "label": "Korosi pada kabel & konektor",
+          "cara_cek": "Periksa konektor kabel yang mudah terlihat di ruang mesin dan bawah dashboard. Cari korosi kehijauan/putih atau bekas air.",
+          "tanda_bahaya": "Korosi pada soket kelistrikan, kabel getas, bekas endapan air.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 1jt - puluhan juta (kelistrikan)",
+          "status": "active"
+        },
+        {
+          "id": "flood_kelistrikan_fungsi",
+          "label": "Fungsi kelistrikan menyeluruh",
+          "cara_cek": "Uji semua fitur listrik sekaligus: lampu, power window, wiper, AC, audio, indikator dashboard. Pasca banjir sering muncul gejala aneh/tidak konsisten.",
+          "tanda_bahaya": "Ada fitur mati/berkedip, lampu indikator menyala tak wajar, fungsi kadang jalan kadang tidak.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 1jt - puluhan juta",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "major",
+      "title": "Bekas Tabrak / Rangka",
+      "deskripsi": "Bekas tabrak berat menurunkan keamanan & nilai. Cek kelurusan bodi dan tanda perbaikan struktur.",
+      "items": [
+        {
+          "id": "crash_celah_panel",
+          "label": "Kelurusan bodi & celah antar panel",
+          "cara_cek": "Lihat celah (gap) antara kap mesin, pintu, fender, dan bagasi dari depan mobil. Celah seharusnya rata & simetris kiri-kanan.",
+          "tanda_bahaya": "Celah tidak rata/tidak simetris, panel tampak dipaksakan, pintu susah menutup.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Bervariasi; indikator tabrak",
+          "status": "active"
+        },
+        {
+          "id": "crash_las_potong",
+          "label": "Bekas las/potong pada rangka",
+          "cara_cek": "Buka kap mesin & bagasi. Periksa dudukan (apron) dan rangka. Cari bekas las tidak rapi, dempul tebal, atau warna logam berbeda.",
+          "tanda_bahaya": "Bekas las kasar, sambungan tidak orisinil, rangka tampak pernah diperbaiki.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_bahaya",
+          "deal_breaker": true,
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Berisiko keamanan (pertimbangkan batal)",
+          "status": "active"
+        },
+        {
+          "id": "crash_cat_ulang",
+          "label": "Cat ulang / ketidaksesuaian warna",
+          "cara_cek": "Lihat bodi dari sudut miring di bawah cahaya. Bandingkan warna & tekstur antar panel. Cek overspray di karet/list.",
+          "tanda_bahaya": "Beda warna/tekstur antar panel, overspray pada karet, permukaan bergelombang (dempul).",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 1jt - 5jt (cat ulang panel)",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "major",
+      "title": "Mesin",
+      "deskripsi": "Cek kondisi dingin (mesin belum dinyalakan) lebih jujur. Minta penjual JANGAN memanaskan mesin sebelum kamu datang.",
+      "items": [
+        {
+          "id": "eng_kondisi_dingin",
+          "label": "Mesin masih dingin saat kamu tiba",
+          "cara_cek": "Sentuh kap/mesin saat tiba — idealnya dingin. Nyalakan & dengarkan suara start pertama serta lihat asap awal.",
+          "tanda_bahaya": "Penjual sudah memanaskan mesin (menyembunyikan gejala), start sulit, suara kasar saat dingin.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_aman",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Indikator penting",
+          "status": "active"
+        },
+        {
+          "id": "eng_asap_knalpot",
+          "label": "Warna asap knalpot",
+          "cara_cek": "Perhatikan asap saat start & saat digas. Asap tipis/tak berwarna = normal.",
+          "tanda_bahaya": "Asap putih tebal (kemungkinan air/oli di ruang bakar), biru (bakar oli), hitam pekat (pembakaran buruk).",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 2jt - puluhan juta (turun mesin)",
+          "status": "active"
+        },
+        {
+          "id": "eng_oli_air",
+          "label": "Oli bercampur air (emulsi)",
+          "cara_cek": "Buka tutup pengisian oli & cek dipstick. Cari cairan seperti kopi susu / busa coklat.",
+          "tanda_bahaya": "Emulsi coklat susu = kemungkinan bocor packing kepala silinder (mahal).",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_bahaya",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 3jt - 15jt",
+          "status": "active"
+        },
+        {
+          "id": "eng_bocor_oli",
+          "label": "Kebocoran oli",
+          "cara_cek": "Lihat kolong mesin & area gasket. Cek noda oli basah/menetes di lantai bawah mesin.",
+          "tanda_bahaya": "Rembes basah, tetesan aktif, kerak oli tebal.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 300rb - 3jt",
+          "status": "active"
+        },
+        {
+          "id": "eng_overheat",
+          "label": "Suhu mesin / gejala overheat",
+          "cara_cek": "Setelah mesin menyala beberapa menit & saat test drive, pantau indikator suhu. Cek radiator & kipas menyala.",
+          "tanda_bahaya": "Jarum suhu naik ke merah, kipas tidak menyala, air radiator kotor/berkarat.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 1jt - 15jt",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "major",
+      "title": "Transmisi",
+      "deskripsi": "Matic mahal bila rusak. Uji perpindahan gigi saat test drive.",
+      "items": [
+        {
+          "id": "trans_matic",
+          "label": "Transmisi matic: perpindahan halus",
+          "cara_cek": "Saat test drive, rasakan perpindahan gigi. Coba akselerasi & deselerasi. Perpindahan harus halus tanpa hentakan/jeda lama.",
+          "tanda_bahaya": "Hentakan keras, jeda lama saat pindah gigi, RPM naik tapi mobil tak nambah kecepatan (slip), lampu transmisi menyala.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 5jt - 25jt (overhaul/ganti)",
+          "status": "active",
+          "berlaku_transmisi": "matic"
+        },
+        {
+          "id": "trans_manual_kopling",
+          "label": "Transmisi manual: kopling & perpindahan",
+          "cara_cek": "Rasakan titik gigit kopling (tidak terlalu tinggi/mepet), dan perpindahan tiap gigi. Coba jalan di tanjakan bila memungkinkan.",
+          "tanda_bahaya": "Kopling selip (RPM naik tanpa tenaga), susah masuk gigi, bunyi saat kopling diinjak.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 1,5jt - 5jt (ganti kopling)",
+          "status": "active",
+          "berlaku_transmisi": "manual"
+        }
+      ]
+    },
+    {
+      "severity": "minor",
+      "title": "Odometer & Kewajaran KM",
+      "deskripsi": "KM bisa diputar mundur. Bandingkan angka KM dengan kondisi fisik yang aus.",
+      "items": [
+        {
+          "id": "odo_kewajaran",
+          "label": "Kewajaran KM vs kondisi aus",
+          "cara_cek": "Catat angka odometer. Bandingkan dengan keausan: pedal karet, kemudi, tuas, jok pengemudi, ban. Rata-rata wajar ~15-20rb km/tahun.",
+          "tanda_bahaya": "KM rendah tapi pedal/kemudi/jok sangat aus, atau angka jauh di bawah rata-rata usia mobil.",
+          "severity": "minor",
+          "input_type": "text",
+          "label_detail": "Angka odometer yang tertera (km)",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Tidak terukur (indikator kejujuran penjual)",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "minor",
+      "title": "Kaki-kaki, Ban & Rem",
+      "deskripsi": "Komponen aus wajar — umumnya jadi bahan negosiasi harga, bukan alasan batal (kecuali parah).",
+      "items": [
+        {
+          "id": "susp_bunyi",
+          "label": "Bunyi kaki-kaki di jalan rusak",
+          "cara_cek": "Saat test drive, lewati jalan bergelombang/polisi tidur pelan. Dengarkan bunyi 'gluduk'/'ktok' dari roda.",
+          "tanda_bahaya": "Bunyi kasar berulang dari kaki-kaki, mobil terasa limbung.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 500rb - 5jt",
+          "status": "active"
+        },
+        {
+          "id": "ban_kondisi",
+          "label": "Kondisi & tahun produksi ban",
+          "cara_cek": "Cek kedalaman alur, keausan merata atau tidak, dan kode 4 digit tahun produksi di dinding ban.",
+          "tanda_bahaya": "Alur tipis, aus tidak merata (indikasi spooring/kaki bermasalah), ban tua/getas.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 500rb - 3jt",
+          "status": "active"
+        },
+        {
+          "id": "rem_fungsi",
+          "label": "Rem pakem & tidak bunyi",
+          "cara_cek": "Saat test drive, rem beberapa kali. Pedal harus pakem, tidak dalam/blong, tidak menarik ke satu sisi.",
+          "tanda_bahaya": "Pedal dalam/blong, bunyi decit/gesekan logam, mobil menarik saat direm.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 300rb - 2jt",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "minor",
+      "title": "Kelistrikan & Interior",
+      "deskripsi": "Uji semua fitur. Selain kenyamanan, banyaknya fitur mati bisa jadi sinyal masalah kelistrikan (lihat cek banjir).",
+      "items": [
+        {
+          "id": "ac_dingin",
+          "label": "AC dingin & cepat",
+          "cara_cek": "Nyalakan AC, tunggu 1-2 menit. Rasakan hembusan dingin merata di semua kecepatan kipas.",
+          "tanda_bahaya": "AC tidak dingin, bau, bunyi kompresor kasar.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 500rb - 5jt",
+          "status": "active"
+        },
+        {
+          "id": "listrik_fitur",
+          "label": "Power window, lampu, wiper, audio",
+          "cara_cek": "Uji satu per satu: semua power window naik-turun, semua lampu (dekat/jauh/sein/rem/mundur), wiper, klakson, audio.",
+          "tanda_bahaya": "Ada yang mati, lambat, atau tidak konsisten.",
+          "severity": "minor",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 100rb - 2jt",
+          "status": "active"
+        },
+        {
+          "id": "dashboard_indikator",
+          "label": "Semua lampu peringatan mati setelah mesin hidup",
+          "cara_cek": "Saat kunci ON lalu mesin menyala, perhatikan lampu indikator. Setelah menyala normal, semua lampu peringatan harus mati.",
+          "tanda_bahaya": "Check engine, ABS, airbag, atau lampu peringatan lain tetap menyala.",
+          "severity": "major",
+          "input_type": "boolean",
+          "polaritas": "ya_aman",
+          "wajib_foto": true,
+          "estimasi_biaya_perbaikan": "Rp 500rb - 10jt (perlu scan/diagnosa)",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "severity": "major",
+      "title": "Test Drive",
+      "deskripsi": "Wajib. Banyak masalah hanya muncul saat mobil berjalan. Cari jalan lurus & sepi untuk uji setir dan rem.",
+      "items": [
+        {
+          "id": "td_setir_lurus",
+          "label": "Setir lurus & tidak menarik",
+          "cara_cek": "Di jalan lurus & rata, lepas tangan sejenak (jika aman). Mobil harus jalan lurus, setir tidak bergetar.",
+          "tanda_bahaya": "Mobil menarik ke kiri/kanan (spooring atau kaki bermasalah), setir bergetar di kecepatan tertentu.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 150rb - 5jt",
+          "status": "active"
+        },
+        {
+          "id": "td_tarikan_getaran",
+          "label": "Tarikan mesin & getaran",
+          "cara_cek": "Akselerasi bertahap. Tenaga harus mengalir mulus tanpa tersendat. Rasakan getaran tak wajar di kabin/setir.",
+          "tanda_bahaya": "Mesin pincang/tersendat, getaran berlebihan, tenaga loyo.",
+          "severity": "major",
+          "input_type": "scale",
+          "wajib_foto": false,
+          "estimasi_biaya_perbaikan": "Rp 500rb - 10jt",
+          "status": "active"
+        }
+      ]
+    }
+  ]
+}
