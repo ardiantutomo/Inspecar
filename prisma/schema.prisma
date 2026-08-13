@@ -1,0 +1,59 @@
+// Prisma schema — Aplikasi Inspeksi Mobil Bekas
+// Rust-free client generator (Prisma 7 default)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  inspections Inspection[]
+}
+
+/// Katalog kendaraan yang sudah "diseed" (merk -> model -> rentang tahun).
+model VehicleCatalogEntry {
+  id        String   @id @default(cuid())
+  brand     String
+  model     String
+  yearStart Int
+  yearEnd   Int
+  /// slug template Tier B statis bila tersedia (mis. "toyota-avanza"), null bila belum ada data spesifik
+  tierBSlug String?
+  createdAt DateTime @default(now())
+
+  @@unique([brand, model, yearStart, yearEnd])
+}
+
+model Inspection {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+  brand          String
+  model          String
+  yearRange      String
+  /// snapshot lengkap template (Tier A + Tier B jika ada) persis versi saat inspeksi dibuat
+  templateSnapshot String
+  templateVersion  Int
+  /// jawaban per item, disimpan sebagai JSON: { [itemId]: { status, note, photoUrl } }
+  answers        String   @default("{}")
+  status         String   @default("draft") // draft | selesai
+  /// hasil komputasi: go | hati-hati | no-go, null selama draft
+  verdict        String?
+  verdictSummary String?
+  isUnlocked     Boolean  @default(false)
+  shareToken     String?  @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+}

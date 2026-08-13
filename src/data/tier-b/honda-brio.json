@@ -1,0 +1,32 @@
+{
+  "brand": "Honda",
+  "model": "Brio",
+  "title": "Penyakit Khas Honda Brio (Beta)",
+  "deskripsi": "Belum diverifikasi menyeluruh — dikumpulkan dari keluhan umum komunitas pemilik. Anggap sebagai titik cek tambahan.",
+  "items": [
+    {
+      "id": "b_brio_cvt_hentakan",
+      "label": "Hentakan transmisi otomatis (CVT) di putaran rendah",
+      "cara_cek": "Saat test drive, coba jalan pelan lalu berhenti-jalan berulang (stop-and-go) seperti macet. Rasakan hentakan saat transisi.",
+      "tanda_bahaya": "Hentakan/'jedug' terasa saat kecepatan rendah atau transisi berhenti-jalan — dikeluhkan pada sebagian unit matic CVT.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Perlu diagnosa bengkel resmi; bervariasi",
+      "confidence": "medium",
+      "catatan_verifikasi": "Dibahas di forum komunitas Brio/Honda matic CVT sebagai gejala yang cukup sering dilaporkan."
+    },
+    {
+      "id": "b_brio_weatherstrip_rembes",
+      "label": "Weather strip pintu getas & rembes air",
+      "cara_cek": "Periksa karet list pintu (weather strip), tekan untuk cek kelenturan. Kalau bisa, cek jejak air di karpet dekat pintu setelah hujan.",
+      "tanda_bahaya": "Karet getas/pecah dan jejak lembab di karpet dekat pintu menandakan potensi rembes.",
+      "severity": "addon",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 100rb - 500rb per pintu",
+      "confidence": "medium",
+      "catatan_verifikasi": "Keluhan minor yang cukup umum pada usia pakai menengah-tua, wajar untuk karet seiring waktu."
+    }
+  ]
+}

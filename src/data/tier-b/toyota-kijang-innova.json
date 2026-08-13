@@ -1,0 +1,32 @@
+{
+  "brand": "Toyota",
+  "model": "Kijang Innova",
+  "title": "Penyakit Khas Toyota Kijang Innova (Beta)",
+  "deskripsi": "Belum diverifikasi menyeluruh — dikumpulkan dari keluhan umum komunitas pemilik, terutama varian diesel. Anggap sebagai titik cek tambahan.",
+  "items": [
+    {
+      "id": "b_innova_asap_hitam_diesel",
+      "label": "Asap hitam saat akselerasi (varian diesel)",
+      "cara_cek": "Perhatikan warna asap knalpot saat digas mendadak, terutama pada varian diesel.",
+      "tanda_bahaya": "Asap hitam pekat saat akselerasi bisa menandakan injector kotor atau turbo bermasalah pada mesin diesel usia tinggi.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 500rb - beberapa juta (servis injector/turbo)",
+      "confidence": "medium",
+      "catatan_verifikasi": "Umum dikeluhkan pada mesin diesel dengan jarak tempuh tinggi dan servis tidak rutin."
+    },
+    {
+      "id": "b_innova_bunyi_tensioner",
+      "label": "Bunyi berdecit dari area timing (varian diesel usia tinggi)",
+      "cara_cek": "Dengarkan area depan mesin (timing cover) saat mesin baru dinyalakan sebelum kipas/aksesoris berputar kencang.",
+      "tanda_bahaya": "Bunyi decit/gemericik dari area timing chain tensioner pada mesin diesel dengan jarak tempuh sangat tinggi.",
+      "severity": "addon",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 1jt - 4jt (ganti tensioner)",
+      "confidence": "medium",
+      "catatan_verifikasi": "Dilaporkan pada unit dengan jarak tempuh sangat tinggi; perlu konfirmasi montir spesialis diesel."
+    }
+  ]
+}

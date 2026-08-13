@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  /* === Token sistem "Diagnostic Report" ===
+     Lihat docs/prompt-desain-ui-anti-slop.md untuk rasionalnya. Warna severity
+     HANYA dipakai untuk mengkodekan tingkat temuan (major/minor/addon), tidak
+     untuk dekorasi. */
+  --ink: #16191c;
+  --ink-soft: #4b5257;
+  --surface: #f6f7f6;
+  --surface-raised: #ffffff;
+  --line: #d8dcda;
+  --line-strong: #b7bdb9;
+  --brand: #0e6e64;
+  --brand-ink: #08403a;
+  --brand-soft: #e3efed;
+
+  --critical: #b23b32;
+  --critical-soft: #f5e4e1;
+  --caution: #c08420;
+  --caution-soft: #f4e8d2;
+  --clear: #2e7d52;
+  --clear-soft: #e1eee5;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-critical: var(--critical);
+  --color-critical-soft: var(--critical-soft);
+  --color-caution: var(--caution);
+  --color-caution-soft: var(--caution-soft);
+  --color-clear: var(--clear);
+  --color-clear-soft: var(--clear-soft);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Data/angka tabular: dipakai di KM, harga, nomor rangka/mesin, estimasi biaya. */
+.font-data {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tap target minimum untuk penggunaan satu tangan sambil berdiri di dekat mobil. */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--brand-ink);
+}

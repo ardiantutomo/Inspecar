@@ -1,0 +1,44 @@
+{
+  "brand": "Toyota",
+  "model": "Avanza",
+  "title": "Penyakit Khas Toyota Avanza (Beta)",
+  "deskripsi": "Belum diverifikasi menyeluruh — dikumpulkan dari keluhan umum komunitas pemilik. Anggap sebagai titik cek tambahan, bukan fakta pasti.",
+  "items": [
+    {
+      "id": "b_avanza_kolong_belakang",
+      "label": "Bunyi \"gluduk\" dari kolong belakang",
+      "cara_cek": "Saat test drive lewat jalan tidak rata atau polisi tidur, dengarkan bunyi dari kolong bagian belakang, terutama saat beban penuh.",
+      "tanda_bahaya": "Bunyi gluduk berulang dari area per daun/bushing belakang — keluhan umum pada Avanza/Xenia terutama yang sering bawa beban berat.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 300rb - 1,5jt (ganti bushing/karet per)",
+      "confidence": "high",
+      "catatan_verifikasi": "Sering dibahas di forum & bengkel spesialis Avanza/Xenia sebagai keluhan khas platform ini."
+    },
+    {
+      "id": "b_avanza_power_window_kanan",
+      "label": "Power window sisi kanan (sopir) macet/lemah",
+      "cara_cek": "Naik-turunkan power window semua pintu beberapa kali, perhatikan kecepatan & suara motor terutama di pintu pengemudi.",
+      "tanda_bahaya": "Gerakan tersendat, suara motor kasar, atau tidak naik penuh — saklar/motor power window sisi pengemudi termasuk yang paling sering rusak lebih dulu.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 150rb - 600rb (motor/saklar)",
+      "confidence": "medium",
+      "catatan_verifikasi": "Keluhan umum di kalangan pemilik & bengkel kelistrikan mobil Jepang sejenis."
+    },
+    {
+      "id": "b_avanza_getar_idle",
+      "label": "Getaran kasar saat idle/langsam",
+      "cara_cek": "Diamkan mesin menyala di posisi netral/parkir, rasakan getaran di setir dan lantai.",
+      "tanda_bahaya": "Getaran berlebihan saat idle bisa menandakan engine mounting yang sudah getas — umum terjadi di usia pakai menengah-tua.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 300rb - 1jt per titik mounting",
+      "confidence": "medium",
+      "catatan_verifikasi": "Umum pada mobil sekelas dengan usia pakai menengah; perlu konfirmasi montir untuk model spesifik."
+    }
+  ]
+}

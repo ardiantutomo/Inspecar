@@ -1,0 +1,32 @@
+{
+  "brand": "Daihatsu",
+  "model": "Xenia",
+  "title": "Penyakit Khas Daihatsu Xenia (Beta)",
+  "deskripsi": "Belum diverifikasi menyeluruh — Xenia satu platform dengan Avanza sehingga sebagian keluhan serupa. Anggap sebagai titik cek tambahan.",
+  "items": [
+    {
+      "id": "b_xenia_kolong_belakang",
+      "label": "Bunyi \"gluduk\" dari kolong belakang",
+      "cara_cek": "Saat test drive lewat jalan tidak rata atau polisi tidur, dengarkan bunyi dari kolong bagian belakang.",
+      "tanda_bahaya": "Bunyi gluduk berulang dari area per daun/bushing belakang — satu platform dengan Avanza sehingga keluhan ini juga umum.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": false,
+      "estimasi_biaya_perbaikan": "Rp 300rb - 1,5jt (ganti bushing/karet per)",
+      "confidence": "high",
+      "catatan_verifikasi": "Satu platform dengan Avanza; keluhan sama-sama sering dibahas di forum pemilik."
+    },
+    {
+      "id": "b_xenia_radiator_net",
+      "label": "Kondisi net/kisi-kisi radiator",
+      "cara_cek": "Buka kap mesin, lihat kondisi radiator net dari depan — cek penyok atau karat.",
+      "tanda_bahaya": "Net radiator penyok/berkarat dapat mengurangi aliran udara pendingin dan memicu overheat pada jarak tempuh tinggi.",
+      "severity": "minor",
+      "input_type": "scale",
+      "wajib_foto": true,
+      "estimasi_biaya_perbaikan": "Rp 200rb - 800rb",
+      "confidence": "medium",
+      "catatan_verifikasi": "Dilaporkan cukup umum pada unit dengan riwayat pemakaian jalan tidak rata/tanah."
+    }
+  ]
+}
